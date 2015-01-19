@@ -3,13 +3,7 @@
 
 
 '''
-Ecuaciones de tiempo extraidas de: Spline-Based Formulas for the
-Determination of Equation of Time and Declination Angle - Fawzi
-Al-Naima and Bilal Abdul Majeed.
-
-Las ecuaciones de tiempo resumidas en el articulo estan citadas (por
-orden) en: :
-
+Ecuaciones de tiempo de: 
 [1] M. Iqbal, An Introduction to Solar Radiations, Academic Press, New
     York, NY, USA, 1986.
 [2] J. Kennewell and A. McDonald, “The equation of time,” Australian
