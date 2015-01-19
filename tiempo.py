@@ -58,7 +58,17 @@ def diaJuliano(dia):
 
 
 
-def diaOrdinal(dia):   # retorna un ordinal de año (1-365) en base a una fecha
+def fecha2ordinal(dia):   # retorna un ordinal de año (1-365) en base a una fecha
     dt = datetime.datetime.strptime(dia, day_format)
     tt = dt.timetuple()
     return tt.tm_yday
+
+
+def ordinal2fecha(n):    # retorna una fecha en base un día ordinal
+    now = date.today()
+    first_of_year = now.replace( month = 1, day = 1 )
+    first_ordinal = first_of_year.toordinal() 
+
+    my_day_ordinal = first_ordinal - 1 + n
+    my_date = date.fromordinal( my_day_ordinal ) 
+    return my_date.isoformat() 
