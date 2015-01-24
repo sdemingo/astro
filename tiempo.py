@@ -59,7 +59,7 @@ def diaJuliano(dia):
 
 
 def fecha2ordinal(dia):   # retorna un ordinal de año (1-365) en base a una fecha
-    dt = datetime.datetime.strptime(dia, day_format)
+    dt = datetime.strptime(dia, day_format)
     tt = dt.timetuple()
     return tt.tm_yday
 
@@ -72,3 +72,10 @@ def ordinal2fecha(n):    # retorna una fecha en base un día ordinal
     my_day_ordinal = first_ordinal - 1 + n
     my_date = date.fromordinal( my_day_ordinal ) 
     return my_date.isoformat() 
+
+
+def hora2decimal(hora):  # retorna un valor decimal de la hora
+    HMS = [60*60, 60, 1]
+    dec_time = sum(a * b for a,b in zip(HMS, map(int, hora.split(":"))))
+    dec_time /= 3600.
+    return dec_time

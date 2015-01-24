@@ -29,14 +29,9 @@ def ecuacionTiempo(dia):
     mint=int(aet)
     secs=int((aet-mint)*60)
     tet = timedelta(minutes=mint,seconds=secs)
-
     return (et,tet)
 
-def fecha2ordinal(dia):   # retorna un ordinal de año (1-365) en base a una fecha
-    dt = datetime.strptime(dia, day_format)
-    tt = dt.timetuple()
-    return tt.tm_yday
-    
+
 
 def tiempoSolar(dia,hora): 
     h = datetime.strptime(hora, hour_format)
@@ -63,16 +58,9 @@ def mediodiaCivil(dia):
     return ct
 
 
-def decimalHour(hora):
-    HMS = [60*60, 60, 1]
-    dec_time = sum(a * b for a,b in zip(HMS, map(int, hora.split(":"))))
-    dec_time /= 3600.
-    return dec_time
-
-
 def anguloHorario(dia,hora):
     ast=tiempoSolar(dia,hora)
-    ast_decimal=decimalHour(ast.strftime(hour_format))
+    ast_decimal=hora2decimal(ast.strftime(hour_format))
     return (ast_decimal-12)*15
 
 

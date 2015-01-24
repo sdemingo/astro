@@ -7,7 +7,7 @@ def main():
     fecha="22.1.2015"
     hora="20:39"
     
-    print "Ecuación de tiempo: "+ str(ecuacionTiempo3(fecha2ordinal(fecha)))
+    print "Ecuación de tiempo: "+ str(ecuacionTiempo(fecha))
     print "Tiempo solar: "+ str(tiempoSolar(fecha,hora))
     print "Mediodía: "+ str(mediodiaCivil(fecha))
     print "--------------"
