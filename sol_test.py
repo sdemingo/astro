@@ -10,6 +10,9 @@ def datos(fecha,hora):
     print "Ecuación de tiempo: "+ str(ecuacionTiempo(fecha))
     print "Tiempo solar: "+ str(tiempoSolar(fecha,hora))
     print "Mediodía: "+ str(mediodiaCivil(fecha))
+    print "Orto: "+str(orto(fecha))
+    print "Ocaso: "+str(ocaso(fecha))
+    print "Horas de Luz: "+str(minutosDeLuz(fecha)/60)
     print "--------------"
     print "Angulo horario: "+ str(anguloHorario(fecha,hora))
     print "Declinacion: "+str(declinacion(fecha2ordinal(fecha)))
@@ -50,8 +53,8 @@ def grafica():
     
 
 def main():
-    #datos("22.1.2015","20:39")
-    grafica()
+    datos("21.5.2015","20:39")
+    #grafica()
 
 
 

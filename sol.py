@@ -9,7 +9,11 @@ Referencias
 from math import *
 from numpy import *
 import datetime
+import ephem
+import time
+
 from tiempo import *
+
 
 
 LATITUD=40.417086  
@@ -78,3 +82,29 @@ def azimut(dia,hora):
     alt=altitud(dia,hora)
     return degrees(arcsin((cos(radians(dec))*sin(radians(h)))/cos(radians(alt))))
 
+
+def ocaso(dia):
+    obs = ephem.Observer()
+    obs.lat, obs.lon = str(LATITUD), str(LONGITUD)
+    
+    day = datetime.strptime(dia,day_format)
+    sdate = day.strftime("%Y/%m/%d")+" 13:00"
+    obs.date = sdate
+    return obs.next_setting(ephem.Sun())
+
+
+def orto(dia):
+    obs = ephem.Observer()
+    obs.lat, obs.lon = str(LATITUD), str(LONGITUD)
+    
+    day = datetime.strptime(dia,day_format)
+    sdate = day.strftime("%Y/%m/%d")+" 13:00"
+    obs.date = sdate
+    return obs.previous_rising(ephem.Sun())
+
+
+def minutosDeLuz(dia):
+    ort = orto(dia)
+    ocs = ocaso(dia)
+    delta = ocs.datetime() - ort.datetime()
+    return delta.total_seconds()/60
