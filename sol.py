@@ -90,7 +90,7 @@ def ocaso(dia):
     day = datetime.strptime(dia,day_format)
     sdate = day.strftime("%Y/%m/%d")+" 13:00"
     obs.date = sdate
-    return obs.next_setting(ephem.Sun())
+    return obs.next_setting(ephem.Sun()).datetime()
 
 
 def orto(dia):
@@ -100,11 +100,11 @@ def orto(dia):
     day = datetime.strptime(dia,day_format)
     sdate = day.strftime("%Y/%m/%d")+" 13:00"
     obs.date = sdate
-    return obs.previous_rising(ephem.Sun())
+    return obs.previous_rising(ephem.Sun()).datetime()
 
 
 def minutosDeLuz(dia):
     ort = orto(dia)
     ocs = ocaso(dia)
-    delta = ocs.datetime() - ort.datetime()
+    delta = ocs - ort
     return delta.total_seconds()/60

@@ -26,8 +26,12 @@ def datos(fecha,hora):
 
 
 
+
+#
+# Altura del Sol sobre el horizonte
+#
+
 def grafica():
-    
     alturas=[]
     for i in range(1,366):
         day=datetime(2015, 1, 1) + timedelta(i - 1)
@@ -47,14 +51,59 @@ def grafica():
     plt.grid()
     plt.axhline(0, color='black')
     plt.show()    
-        
+    
 
+
+
+#
+# Orto y ocaso del Sol durante el año
+#
+
+def grafica2():
+    
+    ortos=[]
+    ocasos=[]
+    for i in range(1,366):
+        day=datetime(2015, 1, 1) + timedelta(i - 1)
+        sday=day.strftime(day_format)
+
+        ort=orto(sday)
+        ort_hours = (ort  - ort.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()/3600
+        ortos.append(ort_hours)
+
+        ocs=ocaso(sday)
+        ocs_hours = (ocs - ocs.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()/3600
+        ocasos.append(ocs_hours)
+
+    
+    x = range(1,366)
+    y1 = ortos
+    y2 = ocasos
+
+    plt.plot(x,y1,'b',x,y2,'r')
+    plt.xlim(1,365)
+    plt.ylim(0,24)
+    plt.title(u'Orto y ocaso del Sol')
+    plt.xlabel(u'Días')
+    plt.ylabel(u'Hora')
+    plt.xticks(linspace(1,365,5))
+    plt.grid()
+    plt.axhline(0, color='black')
+    plt.show()    
 
     
 
+
+
+
+
+
+
+
 def main():
-    datos("21.5.2015","20:39")
+    #datos("21.5.2015","20:39")
     #grafica()
+    grafica2()
 
 
 
