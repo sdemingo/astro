@@ -3,7 +3,7 @@
 
 
 
-from matplotlib.pyplot import rc, grid, figure, plot, rcParams, savefig, show
+from matplotlib.pyplot import rc, grid, figure, rcParams, savefig, show, plot
 from math import radians
 
 import numpy as np
@@ -13,42 +13,38 @@ import tiempo
 from sol import *
 
 
-alturas=[]
-azimuts=[]
-day=datetime(2015, 6, 1) 
 
 
-def plot_positions(observer_lat, observer_lon, positions):
-
-    width, height = rcParams['figure.figsize']
-    size = min(width, height)
-    fig = figure(figsize=(size, size))
-
-    ax = fig.add_axes([0.1, 0.1, 0.8, 0.8], polar=True, axisbg='white')
-    ax.set_theta_zero_location('N')
-    ax.set_theta_direction(-1)
-
+def plot_points(fig,points,color='b'):
     x=[]
     y=[]
-    for (E, Az) in positions:
+    for (E, Az) in points:
         if E > 0:
             x.append(radians(Az))
             y.append(90-E)
 
-    plot(x,y,color='b',marker='o',linestyle=' ')
-    ax.set_yticks(range(0, 90+10, 10))
-    ax.set_yticklabels([])
-    grid(True)
 
+    ax1 = fig.add_subplot(111, polar=True, axisbg='white')
+    ax1.set_theta_zero_location('N')
+    ax1.set_theta_direction(-1)
+
+    ax1.plot(x,y,color,marker='o',linestyle=' ')
+    ax1.set_yticks(range(0, 90+10, 10))
+    ax1.set_yticklabels([])
+
+
+
+
+ 
 
 
 
 def main():
-
     obs = ephem.Observer()
     obs.lat = ephem.degrees(str(LATITUD))
     obs.lon = ephem.degrees(str(LONGITUD))
-    pos=[]
+    pos_v=[]
+    pos_i=[]
 
 
     for h in range(0,23):
@@ -62,7 +58,7 @@ def main():
         obs.date = sdate
         star = ephem.Sun()
         star.compute(obs)
-        pos.append([math.degrees(star.alt),math.degrees(star.az)])
+        pos_i.append([math.degrees(star.alt),math.degrees(star.az)])
 
 
 
@@ -78,10 +74,15 @@ def main():
         obs.date = sdate
         star = ephem.Sun()
         star.compute(obs)
-        pos.append([math.degrees(star.alt),math.degrees(star.az)])
+        pos_v.append([math.degrees(star.alt),math.degrees(star.az)])
     
 
-    plot_positions(obs.lat,obs.lon,pos)
+
+
+    # Dibujo la gráfica
+    fig = figure()
+    plot_points(fig,pos_i)
+    plot_points(fig,pos_v,'r')
     show()
 
 
