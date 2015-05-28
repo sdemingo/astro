@@ -5,6 +5,7 @@
 from skymap import *
 
 
+
 def main():
     obs = ephem.Observer()
     obs.lat = ephem.degrees(str(LATITUD))
@@ -27,18 +28,28 @@ def main():
     for s in ursae:
          s.compute(obs)
          ursae_points.append([math.degrees(s.alt),math.degrees(s.az)])
-    plot_points(fig,ursae_points)
 
+    plot_points(fig,[ursae_points[0],ursae_points[1]],True)
+    plot_points(fig,[ursae_points[0],ursae_points[2]],True)
+    plot_points(fig,[ursae_points[1],ursae_points[3]],True)
+    plot_points(fig,[ursae_points[3],ursae_points[2]],True)
+    plot_points(fig,[ursae_points[3],ursae_points[4]],True)
+    plot_points(fig,[ursae_points[4],ursae_points[5]],True)
+    plot_points(fig,[ursae_points[5],ursae_points[6]],True)
+    
 
     # Dibujo estrella polar
     polaris = ephem.star("Polaris")
     polaris.compute(obs)
     polaris_points = [[math.degrees(polaris.alt),math.degrees(polaris.az)]]
-    plot_points(fig,polaris_points)
+    plot_points(fig,polaris_points,False)
 
 
    
     show()
+
+
+
 
 
 
