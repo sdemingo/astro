@@ -5,6 +5,7 @@
 
 from matplotlib.pyplot import rc, grid, figure, rcParams, savefig, show, plot
 from math import radians
+import itertools 
 
 import numpy as np
 import datetime
@@ -34,6 +35,19 @@ def plot_points(fig,points,color='b'):
 
 
 
+
+def plot_graph(fig,pairs,color='b'):
+            
+    ax=fig.add_subplot(111, polar=True, axisbg='white')
+    ax.set_theta_zero_location('N')
+    ax.set_theta_direction(-1)
+
+    for point in pairs:
+        for point2 in pairs:
+            plot([point[0], point2[0]], [point[1], point2[1]],color,marker='o')
+
+    ax.set_yticks(range(0, 90+10, 10))
+    ax.set_yticklabels([])
 
  
 
@@ -81,10 +95,12 @@ def main():
 
     # Dibujo la gráfica
     fig = figure()
-    plot_points(fig,pos_i)
-    plot_points(fig,pos_v,'r')
-    show()
+    #plot_points(fig,pos_i)
+    #plot_points(fig,pos_v,'r')
 
+    plot_graph(fig,[[1,10],[2,10],[3,10],[4,10]],'r')
+    show()
+    
 
 
 
