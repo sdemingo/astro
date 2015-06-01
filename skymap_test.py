@@ -16,35 +16,20 @@ def main():
     fig = figure()
 
     # Dibujo osa mayor
-    ursae = [ephem.star("Merak"),
-              ephem.star("Dubhe"),
-              ephem.star("Phecda"),
-              ephem.star("Megrez"),
-              ephem.star("Alioth"),
-              ephem.star("Mizar"),
-              ephem.star("Alcaid")]
+    ursae = Constellation(obs)
+    ursae.add_edge(fig,"Merak","Dubhe")
+    ursae.add_edge(fig,"Merak","Phecda")
+    ursae.add_edge(fig,"Dubhe","Megrez")
+    ursae.add_edge(fig,"Megrez","Phecda")
+    ursae.add_edge(fig,"Alioth","Megrez")
+    ursae.add_edge(fig,"Alioth","Mizar")
+    ursae.add_edge(fig,"Mizar","Alcaid")
 
-    ursae_points=[]
-    for s in ursae:
-         s.compute(obs)
-         ursae_points.append([math.degrees(s.alt),math.degrees(s.az)])
-
-    plot_points(fig,[ursae_points[0],ursae_points[1]],True)
-    plot_points(fig,[ursae_points[0],ursae_points[2]],True)
-    plot_points(fig,[ursae_points[1],ursae_points[3]],True)
-    plot_points(fig,[ursae_points[3],ursae_points[2]],True)
-    plot_points(fig,[ursae_points[3],ursae_points[4]],True)
-    plot_points(fig,[ursae_points[4],ursae_points[5]],True)
-    plot_points(fig,[ursae_points[5],ursae_points[6]],True)
-    
 
     # Dibujo estrella polar
-    polaris = ephem.star("Polaris")
-    polaris.compute(obs)
-    polaris_points = [[math.degrees(polaris.alt),math.degrees(polaris.az)]]
-    plot_points(fig,polaris_points,False)
-
-
+    polaris = Constellation(obs)
+    polaris.add_star(fig,"Polaris","red")
+    
    
     show()
 
