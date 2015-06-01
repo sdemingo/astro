@@ -26,13 +26,15 @@ def main():
     ursae.add_edge(fig,"Mizar","Alcaid")
 
 
+
     # Dibujo estrella polar
     polaris = Constellation(obs)
     polaris.add_star(fig,"Polaris","red")
     
-   
-    show()
 
+   
+    # Dibujo el gráfico entero
+    showGraph(fig)
 
 
 

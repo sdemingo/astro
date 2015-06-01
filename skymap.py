@@ -59,7 +59,6 @@ class Constellation:
 
 
 
-
     def __plot_points__(self,fig,points,color):
         x=[]
         y=[]
@@ -68,14 +67,21 @@ class Constellation:
                 x.append(radians(Az))
                 y.append(90-E)
 
-
         ax1 = fig.add_subplot(111, polar=True, axisbg='white')
-        ax1.set_theta_zero_location('N')
-        ax1.set_theta_direction(-1)
+        ax1.plot(x,y,color,marker='.',linestyle="-")
 
-        style='-'
 
-        ax1.plot(x,y,color,marker='.',linestyle=style)
-        ax1.set_yticks(range(0, 90+10, 10))
-        ax1.set_yticklabels([])
+
+
+
+
+def showGraph(fig):
+    ax1 = fig.add_subplot(111, polar=True, axisbg='white')
+    ax1.set_theta_zero_location('N')
+    ax1.set_theta_direction(-1)
+
+    ax1.set_yticks(range(0, 90+10, 10))
+    ax1.set_yticklabels([])
+
+    show()
 
