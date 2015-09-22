@@ -17,7 +17,7 @@ def main():
     obs = ephem.Observer()
     obs.lat = ephem.degrees(str(LATITUD))
     obs.lon = ephem.degrees(str(LONGITUD))
-    obs.date = "1/6/2015 5:00"
+    obs.date = "1/10/2015 5:00"
 
 
     fig = figure()
@@ -31,6 +31,17 @@ def main():
     ursae.add_edge(fig,"Alioth","Megrez")
     ursae.add_edge(fig,"Alioth","Mizar")
     ursae.add_edge(fig,"Mizar","Alcaid")
+
+    # Dibujo osa menor
+    ursae_minor = Constellation(obs,cat)
+    ursae_minor.add_edge(fig,"Polaris","UMi Delta")
+    ursae_minor.add_edge(fig,"UMi Epsilon","UMi Delta")
+    ursae_minor.add_edge(fig,"UMi Epsilon","UMi Delta")
+    ursae_minor.add_edge(fig,"UMi Epsilon","UMi Zeta")
+    ursae_minor.add_edge(fig,"UMi Eta","UMi Zeta")
+    ursae_minor.add_edge(fig,"UMi Eta","UMi Gamma")
+    ursae_minor.add_edge(fig,"UMi Gamma","UMi Beta")
+    ursae_minor.add_edge(fig,"UMi Beta","UMi Zeta")
 
     # Dibujo draco
     draco = Constellation(obs,cat)
@@ -49,9 +60,6 @@ def main():
     draco.add_edge(fig,"Dra Beta","Dra Gamma")
     draco.add_edge(fig,"Dra Xi","Dra Gamma")
 
-    # Dibujo estrella polar
-    polaris = Constellation(obs,cat)
-    polaris.add_star(fig,"Polaris","red")
     
 
    
