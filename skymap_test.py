@@ -17,7 +17,7 @@ def main():
     obs = ephem.Observer()
     obs.lat = ephem.degrees(str(LATITUD))
     obs.lon = ephem.degrees(str(LONGITUD))
-    obs.date = "1/10/2015 5:00"
+    obs.date = "23/9/2015 23:00"
 
 
     fig = figure()
@@ -61,8 +61,25 @@ def main():
     draco.add_edge(fig,"Dra Xi","Dra Gamma")
 
     
+    #Dibujo cefeo
+    cepheus = Constellation(obs,cat)
+    cepheus.add_edge(fig,"Cep Gamma","Cep Iota")
+    cepheus.add_edge(fig,"Cep Gamma","Cep Beta")
+    cepheus.add_edge(fig,"Cep Iota","Cep Zeta")
+    cepheus.add_edge(fig,"Cep Zeta","Cep Alpha")
+    cepheus.add_edge(fig,"Cep Eta","Cep Alpha")
+    cepheus.add_edge(fig,"Cep Beta","Cep Alpha")
+    cepheus.add_edge(fig,"Cep Epsilon","Cep Zeta")
 
-   
+
+    # Dibujo corona
+    corona = Constellation(obs,cat)
+    corona.add_edge(fig,"CrB Alpha","CrB Beta")
+    corona.add_edge(fig,"CrB Theta","CrB Beta")
+    corona.add_edge(fig,"CrB Alpha","CrB Delta")
+    corona.add_edge(fig,"CrB Epsilon","CrB Delta")
+    corona.add_edge(fig,"CrB Epsilon","CrB Iota")
+
     # Dibujo el gráfico entero
     showGraph(fig)
 
